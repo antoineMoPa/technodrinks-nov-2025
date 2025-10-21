@@ -70,6 +70,14 @@ Perso:
 
 ---
 
+# Architecture globale
+
+Une vue à haut niveau de l'architecture
+
+<img src="/architecture.png" class="m-auto max-h-96 mt-4" />
+
+---
+
 # L'AI en prod partie 1 - LLM et génération de script
 
 Application des LLMs pour la génération et le raffinement de script de vidéo
@@ -228,15 +236,6 @@ Les clients exigent de plus en plus d'avoir accès à des outils d'IA générati
 ## Voiceover avec Elevenlabs
 
 <img src="/ai_voiceover.png" class="m-auto max-h-64 mt-4" />
-
----
-
-# Architecture globale
-
-Une vue à haut niveau de l'architecture
-
-
-<img src="/architecture.png" class="m-auto max-h-96 mt-4" />
 
 ---
 
