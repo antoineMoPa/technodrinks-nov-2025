@@ -1,635 +1,345 @@
 ---
-# try also 'default' to start simple
 theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-# some information about your slides (markdown enabled)
-title: Welcome to Slidev
+background: /lumen5.png
+title: L'IA chez Lumen5
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
-# apply UnoCSS classes to the current slide
+  ## L'IA chez Lumen5
+  Architecture d'un service de production de vidéos assisté par l'IA
 class: text-center
-# https://sli.dev/features/drawing
 drawings:
   persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
 transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
 ---
 
-# Welcome to Slidev
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
-Presentation slides for developers
-
-<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
-  Press Space for next page <carbon:arrow-right />
-</div>
-
-<div class="abs-br m-6 text-xl">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="slidev-icon-btn">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
-    <carbon:logo-github />
-  </a>
-</div>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
+<h1 style="background: rgba(0,0,0,0.5); font-family: 'Host Grotesk', sans-serif;">Architecture d'un service de production de vidéos assisté par l'IA</h1>
 
 ---
-transition: fade-out
----
 
-# What is Slidev?
+# Lumen5?
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
+- Plateforme lançée en 2017  par 3 co-fondateurs et amis à Vancouver
+- Permet de convertir des articles de blogs en vidéo
+- IA appliquée - On applique des technologies plutôt que de développer nos propres modèles
+- Financement «bootstrap»
+- Le marché: Marketing B2B
+- Génère environ 4000 vidéos par jour avec l'IA
 
 ---
-transition: slide-up
-level: 2
----
 
-# Navigation
+# Qui suis-je?
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
+**Antoine Morin-Paulhus**
 
-## Keyboard Shortcuts
+Développeur / Team lead dans l'équipe MARS.
 
-|                                                     |                             |
-| --------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                 | next animation or slide     |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                       | previous slide              |
-| <kbd>down</kbd>                                     | next slide                  |
+MARS est une équipe full-stack qui s'occupe notamment de:
 
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+ - La connection avec les partenaires de média stock.
+ - Plusieurs parties frontend de l'application.
+ - L'IA générative.
+ - Et plus encore!
+
+Perso:
+
+ - J'ai toujours des projets perso, présentement smoll.world (créez vos planètes en 3D)
 
 ---
-layout: two-cols
-layoutClass: gap-16
+
+# Petit historique de l'AI dans la plateforme Lumen5
+
+- **2017 - 2022**
+  - NLP
+  - Compréhension simple et résumés de phrases
+  <!-- l'IA et le traitement de language existait bien avant ChatGPT -->
+- **2022**
+  - ChatGPT apparaît
+  <!-- 30 novembre 2022  -->
+- **2023**
+  <!-- Hackathon L5 -->
+  - L'invasion des LLMs
+  - Vidéos «talking head»
+- **2024**
+  - AI voiceover
+- **2025**
+  - Début de l'IA Générative dans la plateforme
+
 ---
 
-# Table of contents
+# L'AI en prod partie 1
 
-You can use the `Toc` component to generate a table of contents for your slides:
+## Génération et raffinement de script de vidéo
 
-```html
-<Toc minDepth="1" maxDepth="1" />
+<img src="/script_composer.png" class="m-auto max-h-96 mt-4" />
+
+---
+
+# Organisation des prompts dans le code
+
+Nos prompts sont dans des fichiers .txt séparés, utilisant le language de template django:
+
+```python
+@inject_prompt_templates(
+    [
+        "script_generation/text_on_media_system.txt",
+        "script_generation/voiceover_system.txt",
+        "script_generation/user.txt",
+    ]
+)
+def get_prompts_for_script_generation(
+    # [...]
+    text_on_media_system: str | None = None,
+    voiceover_system: str | None = None,
+    user: str | None = None,
+    # [...]
+) -> tuple[str, str]:
+    """
+    Returns the system and user prompts for generating a script!
+    """
+    # [...]
 ```
 
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc text-sm minDepth="1" maxDepth="2" />
-
----
-layout: image-right
-image: https://cover.sli.dev
 ---
 
-# Code
+# User Prompt
 
-Use code snippets and get the highlighting directly, and even types hover!
+Voici un extrait de notre prompt user:
 
-```ts [filename-example.ts] {all|4|6|6-7|9|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-import { computed, ref } from 'vue'
 
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
+```
+Subject: {{ subject|safe }}
+Audience: {{ audience|safe }}
+Author: {{ author|safe }}
 
-doubled.value = 2
+Reference material: {{ reference_material|safe }}
+
+Other instructions: {{ other_instructions|safe }}
 ```
 
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="342" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
-
----
-level: 2
 ---
 
-# Shiki Magic Move
+# System Prompt
 
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
+Voici un extrait de notre prompt système:
 
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
+```
+You're a script writing assistant. Please write a script for a {{ script_type|safe }}
+social media video for the provided title (and description, if provided).
 
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
+First outline the planned sections with target {{ unit|safe }} for each,
+adding to {{ target_description|safe }}. Then check if the {{ unit|safe }} count
+add up to the target - if not, generate the planned sections again.
+Then write the script.
+
+Duration rules:
+{% if script_type == "voiceover" %}
+1. The script should be EXACTLY {{ target_words|safe }} words long.
+
+[...]
 ```
 
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
-  }
-}
-```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
-```
-````
+C'est ici que notre magie opère! Nos prompts systèmes font en général 400-850 mots.
 
 ---
 
-# Components
+# Evals
 
-<div grid="~ cols-2 gap-4">
-<div>
+On utilise des LLMs pour évaluer la performance de nos prompts par rapport à plusieurs exemples.
 
-You can use Vue components directly inside your slides.
+**Le concept:**
 
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
+1. On crée un ensemble de cas de test avec des exemples variés
+2. Un LLM évalue les résultats selon plusieurs critères (échelle 1-5):
+   - **Style Transfer Accuracy** - Est-ce que le style correspond?
+   - **Content Preservation** - Est-ce que le contenu est préservé?
+   - **Content Grounding** - Y a-t-il des hallucinations?
+3. On agrège les scores pour mesurer la performance globale
 
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
+Cela nous permet d'itérer sur nos prompts de manière mesurable.
 
 ---
 
-# Clicks Animations
+# L'AI en prod partie 2
 
-You can add `v-click` to elements to add a click animation.
+## "Chatter" avec la plateforme
 
-<div v-click>
+<!-- TODO: Add content -->
 
-This shows up when you click the slide:
+TODO
 
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
+---
 
-</div>
+# L'AI en prod partie 3
 
-<br>
+## Recherche vectorielle: QDrant
 
-<v-click>
+Exemple: Trouver des images similaires en utilisant des embeddings d'image
 
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
-
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn more](https://sli.dev/guide/animations#click-animation)
-
+<div class="grid grid-cols-2 gap-4 mt-4">
+  <img src="/similar_images_1.png" class="rounded" />
+  <img src="/similar_images_2.png" class="rounded" />
 </div>
 
 ---
 
-# Motions
+# Embedding
 
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
+https://platform.openai.com/docs/guides/embeddings
 
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
+**Cluster de vecteurs similaires**
 
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn more](https://sli.dev/guide/animations.html#motion)
-
-</div>
+<img src="/cluster_images_similaires.png" class="m-auto max-h-80 mt-4" />
 
 ---
 
-# LaTeX
+## Recherche d'image similaires
 
-LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
+**Comment ça fonctionne**
 
-<div h-3 />
+- On utilise l'API d'embedding d'OpenAI pour créer des vecteurs qui représentent chaque image à laquelle nous avons accès via Shutterstock
+- On cherche les images dont les vecteurs sont les plus près dans notre DB Qdrant
 
-Inline $\sqrt{3x-1}+(1+x)^2$
+**Pour la recherche par texte:**
+- On convertit la requête en embedding et encore une fois, on cherche les vecteurs les plus près du vecteur de la requête
 
-Block
-$$ {1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
-
-[Learn more](https://sli.dev/features/latex)
+**Exemple live de qdrant:**
+- https://food-discovery.qdrant.tech/
 
 ---
 
-# Diagrams
+# L'AI en prod partie 4
 
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
+## FAL.AI
 
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
+**GIF:**
+https://updates.lumen5.com/en/ai-generated-media
 
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
+**LIVE DEMO** [FAL.AI](http://FAL.AI)
+- Génération d'une image
+- Modèle 3D
 
 ---
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
----
 
-# Draggable Elements
+# L'AI en prod partie 5
 
-Double-click on the draggable elements to edit their positions.
+## Voiceover avec Elevenlabs
 
-<br>
+<img src="/ai_voiceover.png" class="m-auto max-h-64 mt-4" />
 
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
+```python
+response = await self.async_client.text_to_speech.convert_with_timestamps(
+    elevenlabs_voice.voice_id,
+    text=text,
+    model_id=model,
+    voice_settings=elevenlabs_voice.settings,
+    previous_text=join_word_list(previous_text, language),
+    next_text=join_word_list(next_text, language),
+    apply_text_normalization=(
+        "on" if self.MODEL_SUPPORTS_TEXT_NORMALIZATION_ON.get(model, False) else "auto"
+    ),
+)
 ```
 
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <div class="i-carbon:arrow-up" />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/imported-slides.md
-hide: false
 ---
 
 ---
 
-# Monaco Editor
+# Mini challenge
 
-Slidev provides built-in Monaco Editor support.
+**Comment assurer un maximum de concurrence sans dépasser le rate-limit de ElevenLabs?**
 
-Add `{monaco}` to the code block to turn it into an editor:
+**Problème:**<br/>
+Les fournisseurs tels qu'ElevenLabs permettent seulement X requête par minute.
 
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
+Comment maximiser notre efficacité sans dépasser les limites?
 
-const arr = ref(emptyArray(10))
+**Comment résoudre?**<br/>
+
+---
+
+# Mini challenge
+
+**Comment assurer un maximum de concurrence sans dépasser le rate-limit de ElevenLabs?**
+
+**Exemple de solution:**
+- Utiliser un sémaphore `asyncio.Semaphore`
+
+```python
+import asyncio
+
+async def worker(semaphore, id):
+    async with semaphore:
+        print(f"Worker {id} acquired semaphore")
+        await asyncio.sleep(1)  # Simulate some work
+        print(f"Worker {id} released semaphore")
+
+async def main():
+    semaphore = asyncio.Semaphore(2)  # Allow 2 concurrent workers
+    tasks = [worker(semaphore, i) for i in range(5)]
+    await asyncio.gather(*tasks)
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
+---
 
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
+# Output
 
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
 ```
+python3.11 semaphores.py
+Worker 0 acquired semaphore
+Worker 1 acquired semaphore
+Worker 0 released semaphore
+Worker 1 released semaphore
+Worker 2 acquired semaphore
+Worker 3 acquired semaphore
+Worker 2 released semaphore
+Worker 3 released semaphore
+Worker 4 acquired semaphore
+Worker 4 released semaphore
+```
+
+---
+
+# Question ouverte
+
+
+
+## Comment rendre le système distribué?
+
+Plusieurs serveurs chez Lumen5 peuvent contacter le même service.
+
+---
+
+# L'IA pour le développement
+
+Bref portrait de l'IA dans l'équipe de Dev chez Lumen5 en 2025
+
+**L'équipe a accès aux outils dev assistés par l'IA de son choix:**
+
+- Claude
+- Cursor
+- Copilot
+
+Les outils sont disponibles, l'adoption par les développeurs se fait de façon très variable et chacun y va à son rythme.
+
+**Autres outils**
+
+- Revue de code par un agent Claude
+- Création de PR par un agent Claude à partir de Jira
+
+<!-- TODO: Add images here -->
 
 ---
 layout: center
 class: text-center
 ---
 
-# Learn More
+# Questions?
 
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
-
-<PoweredBySlidev mt-10 />
+Merci!
