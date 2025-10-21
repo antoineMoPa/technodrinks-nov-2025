@@ -70,9 +70,9 @@ Perso:
 
 ---
 
-# L'AI en prod partie 1
+# L'AI en prod partie 1 - LLM et génération de script
 
-## Génération et raffinement de script de vidéo
+Application des LLMs pour la génération et le raffinement de script de vidéo
 
 <img src="/script_composer.png" class="m-auto max-h-96 mt-4" />
 
@@ -173,9 +173,9 @@ TODO
 
 ---
 
-# L'AI en prod partie 3
+# L'AI en prod partie 3 - Recherche vectorielle
 
-## Recherche vectorielle: QDrant
+Recherche vectorielle avec QDrant
 
 Exemple: Trouver des images similaires en utilisant des embeddings d'image
 
@@ -211,12 +211,11 @@ https://platform.openai.com/docs/guides/embeddings
 
 ---
 
-# L'AI en prod partie 4
+# L'AI en prod partie 4 - FAL.AI
 
-## FAL.AI
+Les clients exigent de plus en plus d'avoir accès à des outils d'IA générative
 
-**GIF:**
-https://updates.lumen5.com/en/ai-generated-media
+<img src="/generative_images.gif" class="m-auto max-h-96 mt-4" />
 
 **LIVE DEMO** [FAL.AI](http://FAL.AI)
 - Génération d'une image
@@ -224,27 +223,20 @@ https://updates.lumen5.com/en/ai-generated-media
 
 ---
 
-# L'AI en prod partie 5
+# L'AI en prod partie 5 - Des voix IA
 
 ## Voiceover avec Elevenlabs
 
 <img src="/ai_voiceover.png" class="m-auto max-h-64 mt-4" />
 
-```python
-response = await self.async_client.text_to_speech.convert_with_timestamps(
-    elevenlabs_voice.voice_id,
-    text=text,
-    model_id=model,
-    voice_settings=elevenlabs_voice.settings,
-    previous_text=join_word_list(previous_text, language),
-    next_text=join_word_list(next_text, language),
-    apply_text_normalization=(
-        "on" if self.MODEL_SUPPORTS_TEXT_NORMALIZATION_ON.get(model, False) else "auto"
-    ),
-)
-```
-
 ---
+
+# Architecture globale
+
+Une vue à haut niveau de l'architecture
+
+
+<img src="/architecture.png" class="m-auto max-h-96 mt-4" />
 
 ---
 
@@ -312,13 +304,37 @@ Worker 4 released semaphore
 
 ## Comment rendre le système distribué?
 
-Plusieurs serveurs chez Lumen5 peuvent contacter le même service.
 
+---
+layout: image-right
+image: /old-man-yells-at-cloud.png
+---
+
+# Gérer le cloud
+
+On adopte une approche <i>Infrastructure as Code</i>
+
+## Gestion du cluster
+
+* Terraform
+* Flux
+
+
+## Monitoring
+
+* Prometheus
+* AlertManager
+* Sentry
+
+
+---
+layout: image-right
+image: /claude.png
 ---
 
 # L'IA pour le développement
 
-Bref portrait de l'IA dans l'équipe de Dev chez Lumen5 en 2025
+<br/>
 
 **L'équipe a accès aux outils dev assistés par l'IA de son choix:**
 
@@ -326,14 +342,11 @@ Bref portrait de l'IA dans l'équipe de Dev chez Lumen5 en 2025
 - Cursor
 - Copilot
 
-Les outils sont disponibles, l'adoption par les développeurs se fait de façon très variable et chacun y va à son rythme.
-
 **Autres outils**
 
 - Revue de code par un agent Claude
 - Création de PR par un agent Claude à partir de Jira
 
-<!-- TODO: Add images here -->
 
 ---
 layout: center
