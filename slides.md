@@ -165,12 +165,9 @@ Cela nous permet d'itérer sur nos prompts de manière mesurable.
 
 Recherche vectorielle avec QDrant
 
-Exemple: Trouver des images similaires en utilisant des embeddings d'image
+Notre bibliothèque d'images permet de trouver des images similaires à une autre:
 
-<div class="grid grid-cols-2 gap-4 mt-4">
-  <img src="/similar_images_1.png" class="rounded" />
-  <img src="/similar_images_2.png" class="rounded" />
-</div>
+<img src="/similar_images_2.png" class="rounded m-auto" width="200px"/>
 
 ---
 
@@ -287,7 +284,7 @@ Les clients exigent de plus en plus d'avoir accès à des outils d'IA générati
 
 # L'AI appliquée en prod - Cas 3<br/> <span class="font-bold">IA Générative</span>
 
-Démo / Exercise
+Démo
 
 **LIVE DEMO** [FAL.AI](http://FAL.AI)
 - Génération d'une image
