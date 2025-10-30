@@ -10,6 +10,8 @@ drawings:
   persist: false
 transition: slide-left
 mdc: true
+addons:
+  - slidev-component-progress
 ---
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,10 +46,6 @@ MARS est une équipe full-stack qui s'occupe notamment de:
  - L'IA générative.
  - Et plus encore!
 
-Perso:
-
- - J'ai toujours des projets perso, présentement smoll.world (créez vos planètes en 3D)
-
 ---
 
 # Petit historique de l'AI dans la plateforme Lumen5
@@ -70,7 +68,7 @@ Perso:
 
 ---
 
-# L'AI appliquée en prod - Cas 1 - Génération de script
+# L'AI appliquée en prod - Cas 1<br/><span class="font-bold">Génération de script</span>
 
 Application des LLMs pour la génération et le raffinement de script de vidéo
 
@@ -163,7 +161,7 @@ Cela nous permet d'itérer sur nos prompts de manière mesurable.
 
 ---
 
-# L'AI appliquée en prod - Cas 2 - Recherche vectorielle
+# L'AI appliquée en prod - Cas 2<br/> <span class="font-bold">Recherche vectorielle</span>
 
 Recherche vectorielle avec QDrant
 
@@ -202,50 +200,72 @@ https://platform.openai.com/docs/guides/embeddings
 
 ---
 
-## Recherche d'image similaires -
+## Recherche d'image similaires
 
 **On crée des représentation textuelles d'image avec OpenAI.**
 
-TODO
+TODO - exemple de génération de description d'image
 
 ---
 
-## Recherche d'image similaires -
+## Recherche d'image similaires
 
-**On crée des représentation textuelles d'image avec OpenAI.**
+**On obtient un vecteur d'embedding via OpenAI**
 
-TODO
+TODO - exemple d'utilisation de l'API embedding openai
+
+---
+
+## Recherche d'image similaires
+
+**Pistes d'amélioration**
+
+* Utiliser un vecteur d'embedding utilisé directement à partir d'une image.
+* Non supporté par OpenAI pour le moment.
+* Possibilité d'utiliser un modèle de vision tel que ConvNeXt
+
 
 ---
 
 
-# L'AI appliquée en prod - Cas 3 - IA Générative
+# L'AI appliquée en prod - Cas 3<br/> <span class="font-bold">IA Générative</span>
 
-Les clients exigent de plus en plus d'avoir accès à des outils d'IA générative
+Les clients exigent de plus en plus d'avoir accès à des outils d'IA générative.
 
 <img src="/generative_images.gif" class="m-auto max-h-96 mt-4" />
 
-**LIVE DEMO** [FAL.AI](http://FAL.AI)
-- Génération d'une image
-- Modèle 3D
 
 ---
 
-# L'AI appliquée en prod - Cas 4 - Des voix artificielles
+
+# L'AI appliquée en prod - Cas 3<br/> <span class="font-bold">IA Générative</span>
+
+Démo / Exercise
+
+**LIVE DEMO** [FAL.AI](http://FAL.AI)
+- Génération d'une image
+- Modèles Image -> video
+- Génération de modèles 3D
+
+---
+
+# L'AI appliquée en prod - Cas 4<br/> <span class="font-bold">Des voix artificielles</span>
 
 Voiceover avec Elevenlabs
 
-<img src="/ai_voiceover.png" class="m-auto max-h-64 mt-4" />
+Dans lumen5:
+
+<img src="/ai_voiceover.png" class="m-auto max-h-64 mt-4" width="600px"/>
 
 - Elevenlabs:
-  - <span class="color-green">Input</span>: du texte écrit
-  - <span class="color-red">Output</span>: un fichier audio avec une voix artificielle
+  - <span class="font-bold">Input</span>: du texte écrit
+  - <span class="font-bold">Output</span>: un fichier audio avec une voix artificielle
 
 
 
 ---
 
-# Voix artificielles
+# L'AI appliquée en prod - Cas 4<br/> <span class="font-bold">Des voix artificielles</span>
 
 Les voix artificielles, opportunités et risques:
 
@@ -259,14 +279,6 @@ Les voix artificielles, opportunités et risques:
 
 ---
 
-# Architecture globale
-
-Une vue à haut niveau de l'architecture
-
-<img src="/architecture.png" class="m-auto max-h-96 mt-4" />
-
----
-
 # Mini challenge
 
 **Comment assurer un maximum de concurrence sans dépasser le rate-limit de ElevenLabs?**
@@ -277,6 +289,8 @@ Les fournisseurs tels qu'ElevenLabs permettent seulement X requête par minute.
 Comment maximiser notre efficacité sans dépasser les limites?
 
 **Comment résoudre?**<br/>
+
+Réponse à la prochaine page 👀
 
 ---
 
@@ -325,27 +339,25 @@ Worker 4 released semaphore
 
 ---
 
-# Question ouverte
+# Architecture des services
 
+Comment tout ceci est organisé?
 
-
-## Comment rendre le système distribué?
-
+<img src="/architecture.png" class="m-auto max-h-96 mt-4" />
 
 ---
 layout: image-right
 image: /old-man-yells-at-cloud.png
 ---
 
-# Gérer le cloud
-
-On adopte une approche <i>Infrastructure as Code</i>
+# Hébergement
 
 ## Gestion du cluster
 
-* Terraform
-* Flux
-
+* GCP (Google Cloud Platform)
+* On adopte une approche <i>Infrastructure as Code</i>
+  * Terraform
+  * Flux
 
 ## Monitoring
 
@@ -361,7 +373,7 @@ image: /claude.png
 
 # L'IA pour le développement
 
-<br/>
+Nos outils
 
 **L'équipe a accès aux outils dev assistés par l'IA de son choix:**
 
