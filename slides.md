@@ -202,19 +202,66 @@ https://platform.openai.com/docs/guides/embeddings
 
 ## Recherche d'image similaires
 
-**On crée des représentation textuelles d'image avec OpenAI.**
+**Requête d'embedding via OpenAI**
 
-TODO - exemple de génération de description d'image
+
+```python
+import OpenAI from "openai";
+const openai = new OpenAI();
+
+const embedding = await openai.embeddings.create({
+  model: "text-embedding-3-small",
+  input: "Your text string goes here",
+  encoding_format: "float",
+});
+
+console.log(embedding);
+from openai import OpenAI
+client = OpenAI()
+
+response = client.embeddings.create(
+    input="Your text string goes here",
+    model="text-embedding-3-small"
+)
+
+print(response.data[0].embedding)
+```
+
+Exemple tiré de [https://platform.openai.com/docs/guides/embeddings?lang=python](https://platform.openai.com/docs/guides/embeddings?lang=python)
+
 
 ---
 
 ## Recherche d'image similaires
 
-**On obtient un vecteur d'embedding via OpenAI**
+**Résultat d'embedding via OpenAI**
 
-TODO - exemple d'utilisation de l'API embedding openai
+
+```json
+{
+  "object": "list",
+  "data": [
+    {
+      "object": "embedding",
+      "index": 0,
+      "embedding": [
+        -0.006929283495992422,
+        -0.005336422007530928,
+        -4.547132266452536e-05,
+        -0.024047505110502243
+      ],
+    }
+  ],
+  "model": "text-embedding-3-small",
+  "usage": {
+    "prompt_tokens": 5,
+    "total_tokens": 5
+  }
+}
+```
 
 ---
+
 
 ## Recherche d'image similaires
 
@@ -365,6 +412,56 @@ image: /old-man-yells-at-cloud.png
 * AlertManager
 * Sentry
 
+
+---
+
+# Sécurité et utilisation responsable de l'IA
+
+Comment encadrer l'utilisation de l'IA?
+
+**Les outils**
+
+* API de modérations des fournisseurs:
+  * FAL.AI rend très difficile la génération de contenu NSFW
+  * OpenAI donne accès à un API de modération.
+* Fonctionalités de vérification
+  * Groundhog
+    * Un outil supplémentaire pour valider l'information véhiculée dans nos scripts.
+
+**Le choix du marché**
+
+  * Les communicateurs B2B utilisant notre plateforme créent du contenu en général plus professionel.
+
+
+---
+
+# Exemple de modération OpenAI
+
+Exemple de classification de texte
+
+```python
+from openai import OpenAI
+client = OpenAI()
+
+response = client.moderations.create(
+    model="omni-moderation-latest",
+    input="...text to classify goes here...",
+)
+
+print(response)
+```
+
+[https://platform.openai.com/docs/guides/moderation](https://platform.openai.com/docs/guides/moderation)
+
+
+---
+
+# Exemple de modération FAL.ai
+
+FAL.AI fait sa propre modération
+
+
+<img src="/fal_ai_safety.png" class="m-auto max-h-96 mt-16" width="700px"/>
 
 ---
 layout: image-right
