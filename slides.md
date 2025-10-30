@@ -20,13 +20,13 @@ mdc: true
 
 ---
 
-# Lumen5?
+# Lumen5
 
 - Plateforme lançée en 2017  par 3 co-fondateurs et amis à Vancouver
 - Permet de convertir des articles de blogs en vidéo
-- IA appliquée - On applique des technologies plutôt que de développer nos propres modèles
+- IA appliquée&nbsp; On applique des technologies plutôt que de développer nos propres modèles
 - Financement «bootstrap»
-- Le marché: Marketing B2B
+- Le marché&nbsp;: Marketing B2B
 - Génère environ 4000 vidéos par jour avec l'IA
 
 ---
@@ -70,15 +70,7 @@ Perso:
 
 ---
 
-# Architecture globale
-
-Une vue à haut niveau de l'architecture
-
-<img src="/architecture.png" class="m-auto max-h-96 mt-4" />
-
----
-
-# L'AI en prod partie 1 - LLM et génération de script
+# L'AI appliquée en prod - Cas 1 - Génération de script
 
 Application des LLMs pour la génération et le raffinement de script de vidéo
 
@@ -171,17 +163,7 @@ Cela nous permet d'itérer sur nos prompts de manière mesurable.
 
 ---
 
-# L'AI en prod partie 2
-
-## "Chatter" avec la plateforme
-
-<!-- TODO: Add content -->
-
-TODO
-
----
-
-# L'AI en prod partie 3 - Recherche vectorielle
+# L'AI appliquée en prod - Cas 2 - Recherche vectorielle
 
 Recherche vectorielle avec QDrant
 
@@ -208,7 +190,8 @@ https://platform.openai.com/docs/guides/embeddings
 
 **Comment ça fonctionne**
 
-- On utilise l'API d'embedding d'OpenAI pour créer des vecteurs qui représentent chaque image à laquelle nous avons accès via Shutterstock
+- On trouve ou crée des représentation textuelles d'image.
+- On utilise l'API d'embedding d'OpenAI pour créer des vecteurs qui représentent chaque image de nos collections.
 - On cherche les images dont les vecteurs sont les plus près dans notre DB Qdrant
 
 **Pour la recherche par texte:**
@@ -219,7 +202,24 @@ https://platform.openai.com/docs/guides/embeddings
 
 ---
 
-# L'AI en prod partie 4 - FAL.AI
+## Recherche d'image similaires -
+
+**On crée des représentation textuelles d'image avec OpenAI.**
+
+TODO
+
+---
+
+## Recherche d'image similaires -
+
+**On crée des représentation textuelles d'image avec OpenAI.**
+
+TODO
+
+---
+
+
+# L'AI appliquée en prod - Cas 3 - IA Générative
 
 Les clients exigent de plus en plus d'avoir accès à des outils d'IA générative
 
@@ -231,11 +231,39 @@ Les clients exigent de plus en plus d'avoir accès à des outils d'IA générati
 
 ---
 
-# L'AI en prod partie 5 - Des voix IA
+# L'AI appliquée en prod - Cas 4 - Des voix artificielles
 
-## Voiceover avec Elevenlabs
+Voiceover avec Elevenlabs
 
 <img src="/ai_voiceover.png" class="m-auto max-h-64 mt-4" />
+
+- Elevenlabs:
+  - <span class="color-green">Input</span>: du texte écrit
+  - <span class="color-red">Output</span>: un fichier audio avec une voix artificielle
+
+
+
+---
+
+# Voix artificielles
+
+Les voix artificielles, opportunités et risques:
+
+- Vidéos lues par l'IA (Lumen5 et autres)
+- Fraude par clone de la voix
+- Donner la voix à ceux qui n'en ont pas ou plus
+
+À écouter:
+
+[Ces secrets que nos voix livrent à l’IA](https://ici.radio-canada.ca/ohdio/premiere/emissions/tout-terrain/segments/rattrapage/1959945/mariage-voix-et-ia-reportage-yanik-dumont-baronhttps://ici.radio-canada.ca/ohdio/premiere/emissions/tout-terrain/segments/rattrapage/1959945/mariage-voix-et-ia-reportage-yanik-dumont-baron) 🔊
+
+---
+
+# Architecture globale
+
+Une vue à haut niveau de l'architecture
+
+<img src="/architecture.png" class="m-auto max-h-96 mt-4" />
 
 ---
 
