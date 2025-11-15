@@ -21,15 +21,36 @@ addons:
 <h1 style="background: rgba(0,0,0,0.5); font-family: 'Host Grotesk', sans-serif;">Architecture d'un service de production de vidéos assisté par l'IA</h1>
 
 ---
+layout: image-right
+image: /cofounders.png
+---
 
-# Lumen5
+# Lumen5 - intro
 
-- Plateforme lançée en 2017  par 3 co-fondateurs et amis à Vancouver
-- Permet de convertir des articles de blogs en vidéo
-- IA appliquée&nbsp; On applique des technologies plutôt que de développer nos propres modèles
+- Plateforme lançée en 2017  par <br/>3 co-fondateurs et amis à Vancouver
+- Fonctions principales:
+  - Convertir des articles de blogs en vidéo.
+  - Convertir des meetings ou webinaires en vidéos plus courts et plus dynamiques.
+  - Le tout dans le style visuel du client.
+
+---
+
+# Notre marché
+
+- Le marché&nbsp;:
+Marketing B2B (Business to Business)
+  - Vidéos de communications d'affaire pour les médias sociaux
+  - Vidéos explicatifs
+  - Relation avec les investisseurs
+
+---
+
+# La compagnie
+
+- IA appliquée&nbsp;: On applique des technologies plutôt que de développer nos propres modèles
 - Financement «bootstrap»
-- Le marché&nbsp;: Marketing B2B
 - Génère environ 4000 vidéos par jour avec l'IA
+
 
 ---
 
