@@ -28,6 +28,7 @@ image: /cofounders.png
 # Lumen5 - intro
 
 - Plateforme lançée en 2017  par <br/>3 co-fondateurs et amis à Vancouver
+- Financement «bootstrap»
 - Fonctions principales:
   - Convertir des articles de blogs en vidéo.
   - Convertir des meetings ou webinaires en vidéos plus courts et plus dynamiques.
@@ -45,11 +46,14 @@ Marketing B2B (Business to Business)
 
 ---
 
-# La compagnie
+# Technologies
 
 - IA appliquée&nbsp;: On applique des technologies plutôt que de développer nos propres modèles
-- Financement «bootstrap»
-- Génère environ 4000 vidéos par jour avec l'IA
+- Engin vidéo: Luminary (utilise PIXI.js)
+- Django
+- Celery
+- React
+- Nos clients créent environ 4000 vidéos par jour!
 
 
 ---
@@ -89,11 +93,11 @@ MARS est une équipe full-stack qui s'occupe notamment de:
 
 ---
 
-# L'AI appliquée en prod - Cas 1<br/><span class="font-bold">Génération de script</span>
+# L'IA appliquée en prod - Cas 1<br/><span class="font-bold">Génération de script</span>
 
 Application des LLMs pour la génération et le raffinement de script de vidéo
 
-<img src="/script_composer.png" class="m-auto max-h-96 mt-4" />
+<img src="/script_composer.png" class="m-auto max-h-96 mt-4" style="width: 600px"/>
 
 ---
 
@@ -182,7 +186,7 @@ Cela nous permet d'itérer sur nos prompts de manière mesurable.
 
 ---
 
-# L'AI appliquée en prod - Cas 2<br/> <span class="font-bold">Recherche vectorielle</span>
+# L'IA appliquée en prod - Cas 2<br/> <span class="font-bold">Recherche vectorielle</span>
 
 Recherche vectorielle avec QDrant
 
@@ -490,6 +494,8 @@ Nos outils
 
 - Revue de code par un agent Claude
 - Création de PR par un agent Claude à partir de Jira
+
+---
 
 
 ---
