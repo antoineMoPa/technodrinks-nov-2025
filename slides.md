@@ -93,6 +93,54 @@ MARS est une équipe full-stack qui s'occupe notamment de:
 
 ---
 
+# Architecture des services
+
+Comment tout ceci est organisé?
+
+<img src="/architecture.png" class="m-auto max-h-96 mt-4" />
+
+---
+
+# Sécurité et utilisation responsable de l'IA
+
+Comment encadrer l'utilisation de l'IA?
+
+**Les outils**
+
+* API de modérations des fournisseurs:
+  * FAL.AI rend très difficile la génération de contenu NSFW
+  * OpenAI donne accès à un API de modération.
+* Fonctionalités de vérification
+  * Groundhog
+    * Un outil supplémentaire pour valider l'information véhiculée dans nos scripts.
+
+**Le choix du marché**
+
+  * Les communicateurs B2B utilisant notre plateforme créent du contenu en général plus professionel.
+
+
+---
+
+# Exemple de modération OpenAI
+
+Exemple de classification de texte
+
+```python
+from openai import OpenAI
+client = OpenAI()
+
+response = client.moderations.create(
+    model="omni-moderation-latest",
+    input="...text to classify goes here...",
+)
+
+print(response)
+```
+
+[https://platform.openai.com/docs/guides/moderation](https://platform.openai.com/docs/guides/moderation)
+
+---
+
 # L'IA appliquée en prod - Cas 1<br/><span class="font-bold">Génération de script</span>
 
 Application des LLMs pour la génération et le raffinement de script de vidéo
@@ -185,6 +233,7 @@ On utilise des LLMs pour évaluer la performance de nos prompts par rapport à p
 Cela nous permet d'itérer sur nos prompts de manière mesurable.
 
 ---
+
 
 # L'IA appliquée en prod - Cas 2<br/> <span class="font-bold">Recherche vectorielle</span>
 
@@ -308,55 +357,6 @@ Démo
 
 ---
 
-
-# Architecture des services
-
-Comment tout ceci est organisé?
-
-<img src="/architecture.png" class="m-auto max-h-96 mt-4" />
-
----
-
-# Sécurité et utilisation responsable de l'IA
-
-Comment encadrer l'utilisation de l'IA?
-
-**Les outils**
-
-* API de modérations des fournisseurs:
-  * FAL.AI rend très difficile la génération de contenu NSFW
-  * OpenAI donne accès à un API de modération.
-* Fonctionalités de vérification
-  * Groundhog
-    * Un outil supplémentaire pour valider l'information véhiculée dans nos scripts.
-
-**Le choix du marché**
-
-  * Les communicateurs B2B utilisant notre plateforme créent du contenu en général plus professionel.
-
-
----
-
-# Exemple de modération OpenAI
-
-Exemple de classification de texte
-
-```python
-from openai import OpenAI
-client = OpenAI()
-
-response = client.moderations.create(
-    model="omni-moderation-latest",
-    input="...text to classify goes here...",
-)
-
-print(response)
-```
-
-[https://platform.openai.com/docs/guides/moderation](https://platform.openai.com/docs/guides/moderation)
-
-
----
 
 # Exemple de modération FAL.ai
 
