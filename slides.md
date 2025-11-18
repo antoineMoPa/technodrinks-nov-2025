@@ -101,33 +101,6 @@ Application des LLMs pour la génération et le raffinement de script de vidéo
 
 ---
 
-# Organisation des prompts dans le code
-
-Nos prompts sont dans des fichiers .txt séparés, utilisant le language de template django:
-
-```python
-@inject_prompt_templates(
-    [
-        "script_generation/text_on_media_system.txt",
-        "script_generation/voiceover_system.txt",
-        "script_generation/user.txt",
-    ]
-)
-def get_prompts_for_script_generation(
-    # [...]
-    text_on_media_system: str | None = None,
-    voiceover_system: str | None = None,
-    user: str | None = None,
-    # [...]
-) -> tuple[str, str]:
-    """
-    Returns the system and user prompts for generating a script!
-    """
-    # [...]
-```
-
----
-
 # User Prompt
 
 Voici un extrait de notre prompt user:
@@ -169,6 +142,33 @@ C'est ici que notre magie opère! Nos prompts systèmes font en général 400-85
 
 ---
 
+# Organisation des prompts dans le code
+
+Pour mettre le tout ensemble:
+
+```python
+@inject_prompt_templates(
+    [
+        "script_generation/text_on_media_system.txt",
+        "script_generation/voiceover_system.txt",
+        "script_generation/user.txt",
+    ]
+)
+def get_prompts_for_script_generation(
+    # [...]
+    text_on_media_system: str | None = None,
+    voiceover_system: str | None = None,
+    user: str | None = None,
+    # [...]
+) -> tuple[str, str]:
+    """
+    Returns the system and user prompts for generating a script!
+    """
+    # [...]
+```
+
+---
+
 # Evals
 
 On utilise des LLMs pour évaluer la performance de nos prompts par rapport à plusieurs exemples.
@@ -196,16 +196,6 @@ Notre bibliothèque d'images permet de trouver des images similaires à une autr
 
 ---
 
-# Embedding
-
-https://platform.openai.com/docs/guides/embeddings
-
-**Cluster de vecteurs similaires**
-
-<img src="/cluster_images_similaires.png" class="m-auto max-h-80 mt-4" />
-
----
-
 ## Recherche d'image similaires
 
 **Comment ça fonctionne**
@@ -219,6 +209,16 @@ https://platform.openai.com/docs/guides/embeddings
 
 **Exemple live de qdrant:**
 - https://food-discovery.qdrant.tech/
+
+---
+
+# Embedding
+
+https://platform.openai.com/docs/guides/embeddings
+
+**Cluster de vecteurs similaires**
+
+<img src="/cluster_images_similaires.png" class="m-auto max-h-80 mt-4" />
 
 ---
 
@@ -308,122 +308,12 @@ Démo
 
 ---
 
-# L'AI appliquée en prod - Cas 4<br/> <span class="font-bold">Des voix artificielles</span>
-
-Voiceover avec Elevenlabs
-
-Dans lumen5:
-
-<img src="/ai_voiceover.png" class="m-auto max-h-64 mt-4" width="600px"/>
-
-- Elevenlabs:
-  - <span class="font-bold">Input</span>: du texte écrit
-  - <span class="font-bold">Output</span>: un fichier audio avec une voix artificielle
-
-
-
----
-
-# L'AI appliquée en prod - Cas 4<br/> <span class="font-bold">Des voix artificielles</span>
-
-Les voix artificielles, opportunités et risques:
-
-- Vidéos lues par l'IA (Lumen5 et autres)
-- Fraude par clone de la voix
-- Donner la voix à ceux qui n'en ont pas ou plus
-
-À écouter:
-
-[Ces secrets que nos voix livrent à l’IA](https://ici.radio-canada.ca/ohdio/premiere/emissions/tout-terrain/segments/rattrapage/1959945/mariage-voix-et-ia-reportage-yanik-dumont-baronhttps://ici.radio-canada.ca/ohdio/premiere/emissions/tout-terrain/segments/rattrapage/1959945/mariage-voix-et-ia-reportage-yanik-dumont-baron) 🔊
-
----
-
-# Mini challenge
-
-**Comment assurer un maximum de concurrence sans dépasser le rate-limit de ElevenLabs?**
-
-**Problème:**<br/>
-Les fournisseurs tels qu'ElevenLabs permettent seulement X requête par minute.
-
-Comment maximiser notre efficacité sans dépasser les limites?
-
-**Comment résoudre?**<br/>
-
-Réponse à la prochaine page 👀
-
----
-
-# Mini challenge
-
-**Comment assurer un maximum de concurrence sans dépasser le rate-limit de ElevenLabs?**
-
-**Exemple de solution:**
-- Utiliser un sémaphore `asyncio.Semaphore`
-
-```python
-import asyncio
-
-async def worker(semaphore, id):
-    async with semaphore:
-        print(f"Worker {id} acquired semaphore")
-        await asyncio.sleep(1)  # Simulate some work
-        print(f"Worker {id} released semaphore")
-
-async def main():
-    semaphore = asyncio.Semaphore(2)  # Allow 2 concurrent workers
-    tasks = [worker(semaphore, i) for i in range(5)]
-    await asyncio.gather(*tasks)
-
-if __name__ == "__main__":
-    asyncio.run(main())
-```
-
----
-
-# Output
-
-```
-python3.11 semaphores.py
-Worker 0 acquired semaphore
-Worker 1 acquired semaphore
-Worker 0 released semaphore
-Worker 1 released semaphore
-Worker 2 acquired semaphore
-Worker 3 acquired semaphore
-Worker 2 released semaphore
-Worker 3 released semaphore
-Worker 4 acquired semaphore
-Worker 4 released semaphore
-```
-
----
 
 # Architecture des services
 
 Comment tout ceci est organisé?
 
 <img src="/architecture.png" class="m-auto max-h-96 mt-4" />
-
----
-layout: image-right
-image: /old-man-yells-at-cloud.png
----
-
-# Hébergement
-
-## Gestion du cluster
-
-* GCP (Google Cloud Platform)
-* On adopte une approche <i>Infrastructure as Code</i>
-  * Terraform
-  * Flux
-
-## Monitoring
-
-* Prometheus
-* AlertManager
-* Sentry
-
 
 ---
 
@@ -475,33 +365,39 @@ FAL.AI fait sa propre modération
 
 <img src="/fal_ai_safety.png" class="m-auto max-h-96 mt-16" width="700px"/>
 
----
-layout: image-right
-image: /claude.png
----
-
-# L'IA pour le développement
-
-Nos outils
-
-**L'équipe a accès aux outils dev assistés par l'IA de son choix:**
-
-- Claude
-- Cursor
-- Copilot
-
-**Autres outils**
-
-- Revue de code par un agent Claude
-- Création de PR par un agent Claude à partir de Jira
 
 ---
 
+# L'AI appliquée en prod - Cas 4<br/> <span class="font-bold">Des voix artificielles</span>
+
+Voiceover avec Elevenlabs
+
+Dans lumen5:
+
+<img src="/ai_voiceover.png" class="m-auto max-h-64 mt-4" width="600px"/>
+
+- Elevenlabs:
+  - <span class="font-bold">Input</span>: du texte écrit
+  - <span class="font-bold">Output</span>: un fichier audio avec une voix artificielle
+
+
 
 ---
-layout: center
-class: text-center
+
+# L'AI appliquée en prod - Cas 4<br/> <span class="font-bold">Des voix artificielles</span>
+
+Les voix artificielles, opportunités et risques:
+
+- Vidéos lues par l'IA (Lumen5 et autres)
+- Fraude par clone de la voix
+- Donner la voix à ceux qui n'en ont pas ou plus
+
+À écouter:
+
+[Ces secrets que nos voix livrent à l’IA](https://ici.radio-canada.ca/ohdio/premiere/emissions/tout-terrain/segments/rattrapage/1959945/mariage-voix-et-ia-reportage-yanik-dumont-baronhttps://ici.radio-canada.ca/ohdio/premiere/emissions/tout-terrain/segments/rattrapage/1959945/mariage-voix-et-ia-reportage-yanik-dumont-baron) 🔊
+
 ---
+
 
 # Questions?
 
